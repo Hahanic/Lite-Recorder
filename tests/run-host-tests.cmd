@@ -13,6 +13,10 @@ if errorlevel 1 exit /b 1
 cl /nologo /W4 /std:c++17 /EHsc /D_CRT_SECURE_NO_WARNINGS /I src tests\packet-queue.cpp /Fe:build\packet-queue-tests.exe /Fo:build\packet-queue-tests.obj
 if errorlevel 1 exit /b 1
 pushd build
+cl /nologo /W4 /utf-8 /std:c++17 /EHsc /D_CRT_SECURE_NO_WARNINGS /I ..\src ..\tests\ui-policy.cpp /Fe:ui-policy-tests.exe /Fo:ui-policy-tests.obj
+if errorlevel 1 exit /b 1
+ui-policy-tests.exe
+if errorlevel 1 exit /b 1
 protocol-tests.exe
 if errorlevel 1 exit /b 1
 overlay-storage-tests.exe

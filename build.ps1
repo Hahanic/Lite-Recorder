@@ -23,8 +23,10 @@ RunChecked "$toolRoot/elf2nso.exe" @("$buildRoot/probe.elf","$exefsRoot/main")
 RunChecked "$toolRoot/npdmtool.exe" @("$projectRoot/module.json","$exefsRoot/main.npdm")
 RunChecked "$toolRoot/build_pfs0.exe" @($exefsRoot,"$moduleDir/exefs.nsp")
 RunChecked $compiler ($common + @('-std=gnu++20','-frtti','-Os',"-I$projectRoot/vendor/libtesla/include",'-DAPP_TITLE="Lite Recorder"',
-    '-DAPP_VERSION="0.2.1"', "$projectRoot/src/overlay.cpp",'-o',"$buildRoot/overlay.elf") + $link)
-RunChecked "$toolRoot/nacptool.exe" @('--create','Lite Recorder','Lite Recorder contributors','0.2.1',"$buildRoot/control.nacp")
+    '-DAPP_VERSION="0.2.3"', "$projectRoot/src/overlay.cpp",'-o',"$buildRoot/overlay.elf") + $link)
+RunChecked "$toolRoot/nacptool.exe" @('--create','Lite Recorder','Lite Recorder contributors','0.2.3',"$buildRoot/control.nacp")
 RunChecked "$toolRoot/elf2nro.exe" @("$buildRoot/overlay.elf","$overlayDir/ovl-lite-probe.ovl","--nacp=$buildRoot/control.nacp")
 Copy-Item -LiteralPath "$projectRoot/toolbox.json" -Destination $moduleDir -Force
-Write-Host 'Build complete. No boot2.flag is installed; load the module from the overlay.'
+New-Item -ItemType Directory -Force -Path "$moduleDir/flags" | Out-Null
+[IO.File]::WriteAllBytes("$moduleDir/flags/boot2.flag", [byte[]]@())
+Write-Host 'Build complete. Backend starts at boot in idle mode; recording requires Start.'

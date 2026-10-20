@@ -42,8 +42,8 @@ function services(start,size) {
 const expected=['fsp-srv','set:sys','time:u','grc:d','pm:dmnt'].sort();
 assert.deepEqual(services(aci+npdm.readUInt32LE(aci+0x28),npdm.readUInt32LE(aci+0x2c)),expected);
 assert.deepEqual(services(acid+npdm.readUInt32LE(acid+0x228),npdm.readUInt32LE(acid+0x22c)),expected);
-assert(!fs.existsSync(path.join(dir,'flags/boot2.flag')));
+assert.equal(fs.statSync(path.join(dir,'flags/boot2.flag')).size,0);
 const nro=fs.readFileSync(path.join(root,'stage/switch/.overlays/ovl-lite-probe.ovl'));
 assert.equal(nro.toString('ascii',0x10,0x14),'NRO0');
 assert(nro.readUInt32LE(0x18)<=nro.length);
-console.log('Package checks passed: PFS0, NSO, NRO, program ID, ACI0/ACID, service allowlist, manual startup.');
+console.log('Package checks passed: PFS0, NSO, NRO, program ID, ACI0/ACID, service allowlist, boot startup flag.');

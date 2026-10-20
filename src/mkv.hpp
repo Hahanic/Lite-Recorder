@@ -90,7 +90,7 @@ public:
         put(segment,sizeof(segment));segmentStart=offset;seekPos=offset;
         Ebml<64> padding;padding.padding(64);put(padding);
         Ebml<160> info;info.number(0x2ad7b1,100000);info.text(0x4d80,"Lite Recorder");
-        info.text(0x5741,"Lite Recorder 0.2.1");info.real(0x4489,0);
+        info.text(0x5741,"Lite Recorder 0.2.3");info.real(0x4489,0);
         Ebml<192> infoMaster;infoMaster.master(0x1549a966,info);put(infoMaster);durationPos=offset-8;
         Ebml<9000> avcc;avcc.be(1,1);avcc.raw(config.sps+1,3);avcc.be(0xff,1);avcc.be(0xe1,1);
         avcc.be(config.spsSize,2);avcc.raw(config.sps,config.spsSize);avcc.be(1,1);

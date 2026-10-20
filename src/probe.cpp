@@ -9,6 +9,7 @@
 #include "protocol.hpp"
 #include "packet_queue.hpp"
 #include "recorder.hpp"
+#include "ui_policy.hpp"
 
 extern "C" {
 u32 __nx_applet_type = AppletType_None;
@@ -178,14 +179,14 @@ void refreshCodec() {
     mutexUnlock(&codecMutex);
 }
 void updateStatus(uint64_t now) {
+    lr::updateDataAges(status,recorder.active(),recorder.isPaused(),now,
+        startedUs,lastVideoUs,lastAudioUs);
     if(!status.directory[0]&&!recorder.active()) return;
     status.videoBytes=recorder.videoBytes;status.audioBytes=recorder.audioBytes;
     status.videoPackets=recorder.videoPackets;status.audioPackets=recorder.audioPackets;
     status.recordedBytes=recorder.bytes();status.durationUs=recorder.duration();
     status.parts=recorder.partCount();status.completedParts=recorder.completedCount();
     if(recorder.active()) status.elapsedUs=now>=startedUs?now-startedUs:0;
-    const auto v=lastVideoUs?lastVideoUs:startedUs,a=lastAudioUs?lastAudioUs:startedUs;
-    status.videoAgeUs=now>=v?now-v:0;status.audioAgeUs=now>=a?now-a:0;
     if(!recorder.active()) return;
     if(recorder.isPaused()) status.state=lr::State::Paused;
     else if(!config.ready) status.state=lr::State::NeedCodec;
@@ -242,7 +243,7 @@ bool saveSummary() {
     if(!status.directory[0]) return true;
     char path[224];snprintf(path,sizeof(path),"%s/summary.json",status.directory);
     FILE* f=fopen(path,"w");if(!f) return false;
-    bool ok=fprintf(f,"{\n  \"format\":\"lite-recorder-mkv-1\",\n  \"version\":\"0.2.1\",\n"
+    bool ok=fprintf(f,"{\n  \"format\":\"lite-recorder-mkv-1\",\n  \"version\":\"0.2.3\",\n"
         "  \"state\":%u,\n  \"fault\":%u,\n  \"result\":%u,\n  \"stop_reason\":\"%s\",\n"
         "  \"duration_us\":%llu,\n  \"mkv_bytes\":%llu,\n  \"parts\":%u,\n  \"completed_parts\":%u,\n"
         "  \"video_packets\":%llu,\n  \"audio_packets\":%llu,\n"
