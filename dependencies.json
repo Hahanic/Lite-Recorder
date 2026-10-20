@@ -1,0 +1,48 @@
+{
+  "build_platform": "Windows x86_64",
+  "target": "Nintendo Switch AArch64",
+  "packages": [
+    {
+      "name": "gcc",
+      "version": "15.2.0-7",
+      "archive": "gcc.pkg.tar.zst",
+      "sha256": "3485ade0a8be199c0842a18c49516319137141bd2a84ab5135c198874f55c03b",
+      "retrieved_from": "https://wii.leseratte10.de/devkitPro/"
+    },
+    {
+      "name": "binutils",
+      "version": "2.45.1-2",
+      "archive": "binutils.pkg.tar.zst",
+      "sha256": "ca9a5b2a7065085834a7260b0e4723fd34c7bc7c261314205b992bba42dc3695",
+      "retrieved_from": "https://wii.leseratte10.de/devkitPro/"
+    },
+    {
+      "name": "newlib",
+      "version": "4.6.0.20260123-4",
+      "archive": "newlib.pkg.tar.zst",
+      "sha256": "fc97ba1009a94b68f8714c3cc548ef697ca82687b72fe0c05a7ca3df81beb53e",
+      "retrieved_from": "https://wii.leseratte10.de/devkitPro/"
+    },
+    {
+      "name": "libnx",
+      "version": "4.12.0-1",
+      "archive": "libnx.pkg.tar.zst",
+      "sha256": "c6950bdf8e4b872ece492225368c03e633776329548a7494f91aa1e8f239cd8a",
+      "retrieved_from": "https://wii.leseratte10.de/devkitPro/"
+    },
+    {
+      "name": "switch-tools",
+      "version": "1.13.1-1",
+      "archive": "switch-tools.pkg.tar.zst",
+      "sha256": "c9c5fc60e3dd2f82d7c6592611bd37cc610d150ef4fa75fe09ce329df998084d",
+      "retrieved_from": "https://wii.leseratte10.de/devkitPro/"
+    }
+  ],
+  "libtesla": {
+    "repository": "https://github.com/WerWolv/libtesla",
+    "archive_commit_prefix": "f766e9b",
+    "archive_sha256": "433c64f4852b34cd201f3365d9d9f3ef0eda59182f4fc182bfa0a5203fa38c51",
+    "local_patches": "See THIRD-PARTY.md"
+  },
+  "note": "Hashes identify the downloaded build inputs. devkitPro distribution packages are extracted locally; no toolchain binaries are shipped."
+}

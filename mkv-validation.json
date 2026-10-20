@@ -1,0 +1,65 @@
+[
+  {
+    "mode": "natural",
+    "files": 1,
+    "frames": 2177,
+    "duration": 74.928002,
+    "bytes": 50594267
+  },
+  {
+    "mode": "pause",
+    "files": 1,
+    "frames": 1870,
+    "duration": 64.694214,
+    "bytes": 42565523
+  },
+  {
+    "mode": "quick-pause",
+    "files": 1,
+    "frames": 2170,
+    "duration": 74.694687,
+    "bytes": 50449210
+  },
+  {
+    "mode": "stop-paused",
+    "files": 1,
+    "frames": 548,
+    "duration": 20.014684,
+    "bytes": 8729809
+  },
+  {
+    "mode": "size",
+    "files": 6,
+    "frames": 2177,
+    "duration": 74.97757800000001,
+    "bytes": 50593347
+  },
+  {
+    "mode": "time",
+    "files": 8,
+    "frames": 2177,
+    "duration": 75.00238900000001,
+    "bytes": 50593180
+  },
+  {
+    "mode": "long",
+    "files": 1,
+    "frames": 6531,
+    "duration": 224.808006,
+    "bytes": 151783077
+  },
+  {
+    "mode": "missing",
+    "files": 0,
+    "frames": 0,
+    "duration": 0,
+    "bytes": 0
+  },
+  {
+    "mode": "timestamp",
+    "files": 1,
+    "frames": 2177,
+    "duration": 74.928002,
+    "bytes": 50594267
+  }
+]
